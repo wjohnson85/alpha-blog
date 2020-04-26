@@ -1,10 +1,26 @@
-<h1>Show Article details</h1>
 
-<p><%= @article.title %></p>
-<p><%= @article.description %></p>
+<h2 class='text-center mt-4'><%= @article.title %></h2>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %> |
-<%= link_to 'Return to Articles Listing', articles_path %> 
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-8 mt-4">
+            <div class="card text-center shadow mb-5 bg-white rounded">
+                <div class="card-header font-italic">
+                    By Will Johnson
+                </div>
+                <div class="card-body">
+                                <div class="card-text text-left"><%= simple_format(@article.description) %></div>
+                                <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-success" %>
+                                <%= link_to 'Delete', article_path(@article), class: "btn btn-outline-danger", method: :delete, data: { confrim: "Are you sure?" } %>
+                            </div>
+                    <div class="card-footer text-muted">
+                        <small>Created <%= time_ago_in_words(@article.created_at) %> ago, Edited <%= time_ago_in_words(@article.updated_at) %> ago </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
