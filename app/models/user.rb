@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :articles
     # validates that there is a username and that there isnt a match in the database regardless of casing, as well as min and max characther limits
     validates :username, presence: true, uniqueness: { case_sensitive: false}, length: { minimum: 3, maximum: 25}
     
