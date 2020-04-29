@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    # before save lowercase the email self references each obj in the User class
+    # before save lowercase the email, self references each obj in the User class
     before_save { self.email = email.downcase }
     has_many :articles
     # validates that there is a username and that there isnt a match in the database regardless of casing, as well as min and max characther limits
