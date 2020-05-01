@@ -15,6 +15,24 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit
+        @user = User.find(params[:id])
+    end
+        
+    def update
+        # find user and assign it to user instance variable
+        @user = User.find(params[:id])
+
+        if @user.update(user_params)
+            # if the user updates show a success message
+            flash[:notice] = "Account updated"
+            reditect_to articles_path
+        else
+            # if doesn't update show the edit page again
+            render "edit"
+        end
+    end
+
 private 
 # define user_params whitelist email and password
     def user_params
