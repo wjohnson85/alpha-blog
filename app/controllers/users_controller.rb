@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
 
+    def show
+        # assign user to instance variable based on id from params hash
+        @user = User.find(params[:id])
+        # assign all articles from that use to an instance varible to be used in the views
+        @articles = @user.articles
+    end   
+
     def new
         @user = User.new
     end
@@ -22,14 +29,13 @@ class UsersController < ApplicationController
     def update
         # find user and assign it to user instance variable
         @user = User.find(params[:id])
-
         if @user.update(user_params)
             # if the user updates show a success message
             flash[:notice] = "Account updated"
             reditect_to articles_path
         else
             # if doesn't update show the edit page again
-            render "edit"
+            render 'edit'
         end
     end
 
