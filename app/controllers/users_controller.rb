@@ -4,8 +4,12 @@ class UsersController < ApplicationController
         # assign user to instance variable based on id from params hash
         @user = User.find(params[:id])
         # assign all articles from that use to an instance varible to be used in the views
-        @articles = @user.articles
+        @articles = @user.articles.paginate(page: params[:page], per_page: 5)
     end   
+
+    def index
+        @users = User.paginate(page: params[:page], per_page: 5)
+    end
 
     def new
         @user = User.new
@@ -24,6 +28,7 @@ class UsersController < ApplicationController
 
     def edit
         @user = User.find(params[:id])
+        
     end
         
     def update
@@ -32,7 +37,8 @@ class UsersController < ApplicationController
         if @user.update(user_params)
             # if the user updates show a success message
             flash[:notice] = "Account updated"
-            reditect_to articles_path
+            #redirect to @user we assigned on line 36
+            redirect_to @user
         else
             # if doesn't update show the edit page again
             render 'edit'
