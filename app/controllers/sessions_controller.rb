@@ -13,6 +13,7 @@ def create
     # flash persist for one full http request but .now doesnt persist it displays then disappers 
     flash.now[:alert] = "There something wrong with your login details"    
     render 'new'    
+  end
 end
 
 def new
@@ -26,4 +27,4 @@ def destroy
 end
 
 end
-end
+
